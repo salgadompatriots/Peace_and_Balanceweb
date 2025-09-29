@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Peace and Balance — An Anxiety & Stress Support Companion</title>
+  <meta name="description" content="Peace and Balance: a simple, calming web app concept to help recognize, manage, and reduce anxiety." />
+  <style>
+    :root{
+      --bg: #0f172a;          /* slate-900 */
+      --panel: #111827cc;     /* gray-900 w/ alpha */
+      --muted: #94a3b8;       /* slate-400 */
+      --text: #e5e7eb;        /* gray-200 */
+      --accent: #22d3ee;      /* cyan-400 */
+      --accent-2: #a7f3d0;    /* emerald-200 */
+      --ring: #22d3ee44;      /* soft glow */
+    }
+    html,body{margin:0;height:100%;font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; color:var(--text); background:
+      radial-gradient(1200px 1200px at 10% 10%, #164e63 0%, transparent 60%),
+      radial-gradient(1000px 800px at 90% 0%, #312e81 0%, transparent 55%),
+      linear-gradient(180deg,#020617 0%, #0b1225 50%, #0f172a 100%);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 1rem}
+    /* NAV */
+    header{position:sticky;top:0;z-index:50;background:rgba(2,6,23,0.65);backdrop-filter: blur(10px); border-bottom:1px solid #1f2937aa}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.75rem 0}
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .logo{width:44px;height:44px;display:grid;place-items:center;background:linear-gradient(135deg,#0891b2,#34d399);border-radius:12px;box-shadow:0 10px 30px var(--ring)}
+    .brand h1{font-size:1.05rem;margin:0;letter-spacing:.4px}
+    nav{display:flex;gap:.75rem;flex-wrap:wrap}
+    nav a{padding:.5rem .75rem;border-radius:.6rem;color:var(--muted);border:1px solid transparent}
+    nav a:hover{color:var(--text);border-color:#1f2937;background:#0b1327}
+    .cta{padding:.55rem .85rem;border-radius:.7rem;border:1px solid #155e75;background:#0b2d38;color:var(--accent)}
+    .cta:hover{background:#0a3746}
+    /* HERO */
+    .hero{display:grid;place-items:center;padding:72px 0 40px}
+    .hero-card{display:grid;gap:1rem;justify-items:center;text-align:center;background:linear-gradient(180deg, rgba(17,24,39,.75), rgba(17,24,39,.45));
+      border:1px solid #1f2937; border-radius:20px; padding:2.2rem; box-shadow:0 30px 80px var(--ring)}
+    .slogan{color:var(--accent); text-shadow:0 0 20px #22d3ee11}
+    .hero h2{font-size:clamp(1.6rem, 2.6vw, 2.4rem);margin:.25rem 0}
+    .hero p{color:var(--muted);max-width:62ch}
+    .actions{display:flex;gap:.7rem;flex-wrap:wrap}
+    .btn{padding:.8rem 1rem;border-radius:.8rem;border:1px solid #0ea5b7;background:#042026;color:#ccfbf1;font-weight:600}
+    .btn:hover{background:#052a31}
+    .btn.alt{border-color:#4ade80;background:#0b2a16;color:#bbf7d0}
+    .btn.alt:hover{background:#0f3a1e}
+    /* SECTIONS */
+    section{scroll-margin-top:90px}
+    .split{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem;margin:2.2rem 0}
+    .card{grid-column:span 12;background:linear-gradient(180deg, rgba(17,24,39,.75), rgba(17,24,39,.45));border:1px solid #1f2937;border-radius:16px;padding:1.2rem}
+    .card h3{margin:.2rem 0 0.4rem;font-size:1.05rem}
+    .pill{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .6rem;border:1px solid #1f2937;border-radius:999px;color:var(--muted);font-size:.85rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+    .mini{border:1px solid #1f2937;border-radius:14px;padding:1rem;background:#0b1225aa}
+    .mini h4{margin:.2rem 0 .3rem;font-size:1rem}
+    .muted{color:var(--muted)}
+    .kpi{font-weight:700;color:var(--accent-2)}
+    /* FOOTER */
+    footer{margin-top:3rem;border-top:1px solid #1f2937;color:#94a3b8}
+    footer .bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.2rem 0}
+    /* BREATHING CIRCLE (just a simple visual) */
+    .breathe{width:84px;height:84px;border-radius:50%;border:2px dashed #22d3ee44;display:grid;place-items:center;margin:.3rem auto 0}
+    .breathe::before{content:"";width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #a7f3d0 0%, #22d3ee 60%, #0ea5b7 100%);filter:blur(.2px);animation:breathe 6s ease-in-out infinite}
+    @keyframes breathe{0%,100%{transform:scale(.8);opacity:.85}50%{transform:scale(1.05);opacity:1}}
+    /* Responsive cols */
+    @media (min-width: 720px){ .col-6{grid-column:span 6} .col-4{grid-column:span 4} }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <!-- Simple inline SVG logo: a balanced leaf inside a rounded diamond -->
+      <div class="logo" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peace and Balance logo">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ecfeff"/>
+              <stop offset="100%" stop-color="#a7f3d0"/>
+            </linearGradient>
+          </defs>
+          <path d="M24 4 L42 24 L24 44 L6 24 Z" fill="#0ea5b7" opacity="0.25"/>
+          <path d="M24 8 L38 24 L24 40 L10 24 Z" fill="url(#g)" opacity="0.85"/>
+          <path d="M24 14c7 0 10 6 10 6s-4 2-10 2-10-2-10-2 3-6 10-6Z" fill="#0ea5b7" opacity=".35"/>
+          <path d="M24 15c-6 5-6 13-6 13s7 0 12-5c5-5 4-10 4-10s-4 0-10 2Z" fill="#065f46" opacity=".35"/>
+        </svg>
+      </div>
+      <h1>Peace and Balance</h1>
+    </div>
+    <nav aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#guide">Guide Me</a>
+      <a href="#calm">Calm Now</a>
+      <a href="#library">Library</a>
+      <a href="#progress">Progress</a>
+      <a href="#settings" class="cta">Settings</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home" class="hero">
+  <div class="container hero-card">
+    <div class="slogan">An Anxiety &amp; Stress Support Companion</div>
+    <h2>Small steps. Real relief. Build calmer habits with a friendly guide.</h2>
+    <p>Quick techniques for immediate calm, short plans to reduce stress, and gentle routines to build resilience — all wrapped in a simple, supportive experience.</p>
+    <div class="actions" role="group" aria-label="Primary actions">
+      <a class="btn" href="#guide">Guide Me</a>
+      <a class="btn alt" href="#calm">Try Calm Now</a>
+    </div>
+  </div>
+</main>
+
+<section id="about" class="container">
+  <div class="split">
+    <div class="card col-6">
+      <span class="pill" aria-hidden="true">Overview</span>
+      <h3>About Peace and Balance</h3>
+      <p class="muted">This educational wellness prototype helps you recognize, manage, and reduce anxiety. It offers a brief check‑in, suggests the next best step, and lets you track simple wins — not a medical device or therapy.</p>
+    </div>
+    <div class="card col-6">
+      <span class="pill" aria-hidden="true">Core Value</span>
+      <h3>Immediate Relief + Ongoing Habits</h3>
+      <p class="muted">Start with a quick technique when you need it most, then build small daily practices to stay balanced over time.</p>
+    </div>
+  </div>
+</section>
+
+<section id="guide" class="container">
+  <div class="card">
+    <span class="pill">Assistant</span>
+    <h3>Guide Me</h3>
+    <p class="muted">Answer 3 quick questions. We estimate a stress level and recommend a matching path: <strong>Calm Now</strong>, <strong>Reduce Stress</strong>, or <strong>Build Resilience</strong>.</p>
+    <div class="grid" style="margin-top:.5rem">
+      <div class="mini"><h4>Ask</h4><p class="muted">Brief check‑in to understand mood, triggers, and energy.</p></div>
+      <div class="mini"><h4>Assess</h4><p class="muted">Light rule‑based triage maps responses to Low/Med/High.</p></div>
+      <div class="mini"><h4>Act</h4><p class="muted">Offer the right technique or short plan for right now.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="calm" class="container">
+  <div class="split">
+    <div class="card col-6">
+      <span class="pill">Immediate Relief</span>
+      <h3>Calm Now — Breathing</h3>
+      <div class="breathe" aria-hidden="true"></div>
+      <p class="muted" style="margin-top:.6rem">Follow the circle — inhale as it expands, exhale as it contracts. Try box, 4‑7‑8, or coherent breathing.
+      </p>
+    </div>
+    <div class="card col-6">
+      <span class="pill">Grounding</span>
+      <h3>5‑4‑3‑2‑1</h3>
+      <p class="muted">Notice 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste. A simple way to return to the present moment.</p>
+    </div>
+  </div>
+</section>
+
+<section id="library" class="container">
+  <div class="card">
+    <span class="pill">Library</span>
+    <h3>Technique Library</h3>
+    <div class="grid">
+      <div class="mini"><h4>Body Scan</h4><p class="muted">Short audio to release tension head‑to‑toe.</p></div>
+      <div class="mini"><h4>Thought Reframe</h4><p class="muted">CBT‑style prompts to challenge anxious thoughts.</p></div>
+      <div class="mini"><h4>Journaling</h4><p class="muted">Quick prompts to reflect and track triggers.</p></div>
+      <div class="mini"><h4>Mini Courses</h4><p class="muted">5–10 minute plans to build coping skills.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="progress" class="container">
+  <div class="split">
+    <div class="card col-6">
+      <span class="pill">Progress</span>
+      <h3>Small Wins</h3>
+      <p class="muted">Track daily check‑ins, maintain streaks, and see a simple weekly trend. Celebrate any step — even 1 minute counts.</p>
+      <p class="kpi">Streak: 3 days • Relief after session: 78%</p>
+    </div>
+    <div class="card col-6" id="settings">
+      <span class="pill">Settings</span>
+      <h3>Accessibility & Data</h3>
+      <p class="muted">Adjust motion, text size, and reminders. Export or delete your data at any time. Privacy by default.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container bar">
+    <small>© <span id="y"></span> Peace and Balance</small>
+    <small>Disclaimer: Educational wellness companion — not a medical device. In crisis, use local emergency resources.</small>
+  </div>
+</footer>
+
+<script>
+  // Update year
+  document.getElementById('y').textContent = new Date().getFullYear();
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{ const id = a.getAttribute('href'); const el = document.querySelector(id); if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); } });
+  });
+</script>
+</body>
+</html>
